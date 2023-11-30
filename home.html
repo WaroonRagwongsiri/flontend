@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Fresonlinesh</title>
+        <link rel="stylesheet" href="css/home.css" />
+        <link rel="stylesheet" href="css/nav.css" />
+    </head>
+    <body>
+        <script defer type="module">
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
+            import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js";
+            import { getFirestore, collection, addDoc, query, where } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js";
+    
+            const firebaseConfig = {
+                apiKey: "AIzaSyDAN-T3Dy2aZcvwJCg35n75m3N36s58n0o",
+                authDomain: "tobeit67hackathon.firebaseapp.com",
+                projectId: "tobeit67hackathon",
+                storageBucket: "tobeit67hackathon.appspot.com",
+                messagingSenderId: "195365048954",
+                appId: "1:195365048954:web:0f4de9abdf5fd68af8e1c3"
+            };
+    
+            const app = initializeApp(firebaseConfig);
+            const auth = getAuth(app);
+            const db = getFirestore(app);
+    
+            const loginButton = document.querySelector("button.login-button");
+            
+            onAuthStateChanged(auth, (user) => {
+                if (user) {
+                    console.log("user logged in");
+                    console.log(user);
+                } else {
+                    console.log("user logged out");
+                    window.location.href = "login.html";
+                }
+            });
+        </script>
+
+
+        <nav>
+            <h1>Fresonlinesh</h1>
+            <div class="right-nav">
+                <input type="text" name="search" placeholder="ค้นหาสินค้า" class="input-search"/>
+                <p>PIN</p>
+                <p>BRACKET</p>
+                <p>PROFILE</p>
+            </div>
+        </nav>
+        <section class="main-section">
+            <div class="row">
+                <h2>แนะนำ</h2>
+                <div class="item-list">
+                    <div class="item"></div>
+                    <div class="item"></div>
+                    <div class="item"></div>
+                    <div class="item"></div>
+                    <div class="item"></div>
+                    <div class="item"></div>
+                </div>
+            </div>
+            <div class="row">
+                <h2>ใกล้ฉัน</h2>
+                <div class="item-list">
+                    <div class="item"></div>
+                    <div class="item"></div>
+                    <div class="item"></div>
+                    <div class="item"></div>
+                    <div class="item"></div>
+                </div>
+        </section>
+    </body>
+</html>

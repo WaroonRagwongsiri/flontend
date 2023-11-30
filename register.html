@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fresonlinesh</title>
+    <link rel="stylesheet" href="css/register.css" />
+</head>
+
+<body>
+    <script defer type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js";
+        import { getFirestore, collection, addDoc, query, where } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDAN-T3Dy2aZcvwJCg35n75m3N36s58n0o",
+            authDomain: "tobeit67hackathon.firebaseapp.com",
+            projectId: "tobeit67hackathon",
+            storageBucket: "tobeit67hackathon.appspot.com",
+            messagingSenderId: "195365048954",
+            appId: "1:195365048954:web:0f4de9abdf5fd68af8e1c3"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        const registerButton = document.querySelector("button.register-button");
+
+        registerButton.addEventListener("click", async () => {
+            try {
+                const email = document.querySelector("input[name='email']").value;
+                const password = document.querySelector("input[name='password']").value;
+                const adress = document.querySelector("input[name='adress']").value;
+
+                await createUserWithEmailAndPassword(auth, email, password);
+
+                const user = auth.currentUser;
+
+                await addDoc(collection(db, "users"), {
+                    uid: user.uid,
+                    email: email,
+                    adress: adress
+                });
+
+                alert("สมัครสำเร็จ");
+            } catch (error) {
+                console.log("สมัครไม่สำเร็จ");
+                alert("สมัครไม่สำเร็จ", error);
+            }
+        });
+        
+    </script>
+
+
+    <div class="container">
+        <form action="#" class="login-layout">
+            <div>
+                <img src="img/ricado.jpg" alt="" width="200" height="200" />
+            </div>
+            <h1 class="form-head">Fresonlinesh</h1>
+            <div class="form-layout">
+                <input type="email" name="email" placeholder="อีเมล" class="input-type" required/>
+                <input type="password" name="password" placeholder="รหัสผ่าน" class="input-type" required/>
+                <input type="text" name="adress" placeholder="ที่อยู่" class="input-type" required/>
+            </div>
+            <div class="form-layout">
+                <img src="img/line-icon.png" alt="line-icon" width="65" height="65" />
+                <button class="register-button">สมัคร</button>
+            </div>
+            <div class="form-layout">
+                <span id="registerLink">มีบัญชีอยู่แล้ว?<a href="index.html">ล๊อกอิน</a></span>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

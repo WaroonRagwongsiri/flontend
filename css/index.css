@@ -1,0 +1,54 @@
+@import url("https://fonts.googleapis.com/css2?family=Prompt&display=swap");
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-size: 18px;
+    font-family: "Prompt", sans-serif;
+}
+
+.container {
+    margin: 0 5rem;
+    height: 100vh;
+}
+
+.login-layout {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    gap: 2rem;
+    height: 100%;
+}
+
+.form-layout {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.form-head {
+    font-size: 65px;
+    letter-spacing: 5px;
+}
+
+.input-type {
+    font-size: 18px;
+    width: 22rem;
+    padding: 1rem 1rem;
+    border: none;
+    border-radius: 7px;
+    background-color: #ededed;
+    color: #6a6a6a;
+}
+
+.submit-btn {
+    color: #365c00;
+    background-color: #b2e26d;
+    padding: 0.5rem 1.75rem;
+    border: none;
+    border-radius: 7px;
+}

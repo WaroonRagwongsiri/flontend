@@ -1,0 +1,46 @@
+@import url("https://fonts.googleapis.com/css2?family=Prompt&display=swap");
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-size: 18px;
+    font-family: "Prompt", sans-serif;
+}
+
+th,
+td {
+    border-collapse: collapse;
+}
+
+table {
+    margin: 4rem auto;
+    width: 80vw;
+    border-radius: 10px;
+}
+
+table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #919985;
+    color: white;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border: 1px solid black;
+}
+
+table td {
+    border: 1px solid black;
+    padding: 2rem 5rem;
+}
+
+table tr {
+    background-color: #ece5cd;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

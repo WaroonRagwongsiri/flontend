@@ -1,0 +1,159 @@
+@import url("https://fonts.googleapis.com/css2?family=Prompt&display=swap");
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-size: 18px;
+    font-family: "Prompt", sans-serif;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+    margin-top: 2rem;
+    width: 90%;
+    gap: 2rem;
+}
+
+.above {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    width: 50%;
+}
+
+.profile-img {
+    border-radius: 100%;
+    overflow: hidden;
+    width: 175px;
+    height: 175px;
+}
+
+.profile-img > img {
+    object-fit: contain;
+}
+
+.top-right {
+    max-width: 50%;
+    padding: 0 1rem;
+    border-left: 1px solid black;
+}
+
+.item-list {
+    display: flex;
+    overflow-x: auto;
+    gap: 1rem;
+}
+
+.item {
+    min-width: 300px;
+    height: 200px;
+    background-color: #a3ad95;
+}
+
+.img-link {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.img-link > a {
+    text-decoration: none;
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 20px;
+    background-color: #678345;
+}
+
+.buttom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.buttom-left {
+    display: flex;
+    gap: 3rem;
+    max-width: 50%;
+}
+
+.product {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    max-width: 350px;
+}
+
+.product-img > img {
+    width: 350px;
+    height: 350px;
+    object-fit: contain;
+}
+
+.item-list2 {
+    display: flex;
+    overflow-x: auto;
+    gap: 1rem;
+    max-width: 100%;
+}
+
+.item2 {
+    min-width: 75px;
+    height: 75px;
+    border-radius: 10px;
+    background-color: #a3ad95;
+}
+
+.product-detail {
+    padding-top: 2rem;
+    display: flex;
+    gap: 1.5rem;
+    flex-direction: column;
+}
+
+.btn {
+    text-decoration: none;
+    background-color: #678345;
+    padding: 0.25rem 0.5rem;
+    color: white;
+    border-radius: 13px;
+}
+
+.detail-text {
+    font-size: 25px;
+}
+
+.bottom-right {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.textarea {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    width: 60%;
+}
+
+.textarea > h3 {
+    font-size: 30px;
+}
+
+textarea {
+    border-radius: 15px;
+}
