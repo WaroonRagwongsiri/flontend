@@ -10,7 +10,7 @@
     <body>
         <script defer type="module">
             import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
-            import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js";
+            import { getAuth, signOut , onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js";
             import { getFirestore, collection, addDoc, query, where } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js";
     
             const firebaseConfig = {
@@ -26,17 +26,25 @@
             const auth = getAuth(app);
             const db = getFirestore(app);
     
-            const loginButton = document.querySelector("button.login-button");
+            const logoutButton = document.querySelector("button.logout-button");
             
             onAuthStateChanged(auth, (user) => {
-                if (user) {
-                    console.log("user logged in");
-                    console.log(user);
-                } else {
+                if (!user) {
                     console.log("user logged out");
-                    window.location.href = "login.html";
+                    window.location.href = "index.html";
                 }
             });
+
+            logoutButton.addEventListener("click", () => {
+                signOut(auth).then(() => {
+                    console.log("user logged out");
+                    window.location.href = "index.html";
+                }).catch((error) => {
+                    alert(error.message);
+                    console.log(error);
+                });
+            });
+
         </script>
 
 
@@ -46,7 +54,8 @@
                 <input type="text" name="search" placeholder="ค้นหาสินค้า" class="input-search"/>
                 <p>PIN</p>
                 <p>BRACKET</p>
-                <p>PROFILE</p>
+                <p class="profile-link">PROFILE</p>
+                <button class="logout-button">Logout</button>
             </div>
         </nav>
         <section class="main-section">

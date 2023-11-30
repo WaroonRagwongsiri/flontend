@@ -35,3 +35,20 @@ h1 {
     border-radius: 7px;
     padding: 0.25rem 1rem;
 }
+
+.logout-button {
+    position: absolute;
+    display: none;
+    background-color: #fff;
+    color: black;
+    border: 1px solid #ddd;
+    padding: 20px 15px;
+    cursor: pointer;
+    top: 7%;
+    right: 5%;
+}
+
+.profile-link:hover + .logout-button,
+.logout-button:hover {
+    display: inline-block;
+}
