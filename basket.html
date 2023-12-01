@@ -58,16 +58,33 @@
                 const itemElement = document.createElement('div');
                 itemElement.classList.add('item');
                 itemElement.innerHTML = `
-                    <img class="item-image" src="./img/ricado.jpg" alt="product" />
-                    <p>${item.name}</p>
-                    <p>ราคา ${item.price}</p>
-                `;
+            <div class="item-details">
+                <img class="item-image" src="./img/ricado.jpg" alt="product" />
+                <div class="item-info">
+                    <p class="item-name">${item.name}</p>
+                    <p class="item-price">ราคา ${item.price}</p>
+                </div>
+            </div>
+            <div class="item-quantity">
+                <p>จำนวน: ${item.quantity}</p>
+            </div>
+        `;
                 itemContainer.appendChild(itemElement);
             });
         }
 
         // Call the function to display items when the page loads
         displayItemsFromLocalStorage();
+
+        const clearCartBtn = document.querySelector('button.clear-button');
+
+        function clearCart() {
+            localStorage.removeItem('cart');
+            displayItemsFromLocalStorage(); // Update the displayed items after clearing
+        }
+
+        clearCartBtn.addEventListener('click', clearCart);
+
     </script>
 
     <nav>
@@ -89,6 +106,7 @@
             </div>
         </div>
         <a href="payment.html"><button class="buy-button">ซื้อสินค้า</button></a>
+        <button class="clear-button">ล้างตะกร้า</button>
     </section>
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
