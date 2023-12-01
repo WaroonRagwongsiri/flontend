@@ -1,78 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Fresonlinesh</title>
-        <link rel="stylesheet" href="css/basket.css" />
-        <link rel="stylesheet" href="css/nav.css" />
-    </head>
-    <body>
-        <script defer type="module">
-            import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
-            import { getAuth, signOut , onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js";
-            import { getFirestore, collection, addDoc, query, where } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js";
-    
-            const firebaseConfig = {
-                apiKey: "AIzaSyDAN-T3Dy2aZcvwJCg35n75m3N36s58n0o",
-                authDomain: "tobeit67hackathon.firebaseapp.com",
-                projectId: "tobeit67hackathon",
-                storageBucket: "tobeit67hackathon.appspot.com",
-                messagingSenderId: "195365048954",
-                appId: "1:195365048954:web:0f4de9abdf5fd68af8e1c3"
-            };
-    
-            const app = initializeApp(firebaseConfig);
-            const auth = getAuth(app);
-            const db = getFirestore(app);
-    
-            const logoutButton = document.querySelector("button.logout-button");
-            
-            onAuthStateChanged(auth, (user) => {
-                if (!user) {
-                    console.log("user logged out");
-                    window.location.href = "index.html";
-                }
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fresonlinesh</title>
+    <link rel="stylesheet" href="css/basket.css" />
+    <link rel="stylesheet" href="css/nav.css" />
+</head>
+
+<body>
+    <script defer type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
+        import { getAuth, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js";
+        import { getFirestore, collection, addDoc, query, where } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDAN-T3Dy2aZcvwJCg35n75m3N36s58n0o",
+            authDomain: "tobeit67hackathon.firebaseapp.com",
+            projectId: "tobeit67hackathon",
+            storageBucket: "tobeit67hackathon.appspot.com",
+            messagingSenderId: "195365048954",
+            appId: "1:195365048954:web:0f4de9abdf5fd68af8e1c3"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        const logoutButton = document.querySelector("button.logout-button");
+
+        onAuthStateChanged(auth, (user) => {
+            if (!user) {
+                console.log("user logged out");
+                window.location.href = "index.html";
+            }
+        });
+
+        logoutButton.addEventListener("click", () => {
+            signOut(auth).then(() => {
+                console.log("user logged out");
+                window.location.href = "index.html";
+            }).catch((error) => {
+                alert(error.message);
+                console.log(error);
             });
+        });
 
-            logoutButton.addEventListener("click", () => {
-                signOut(auth).then(() => {
-                    console.log("user logged out");
-                    window.location.href = "index.html";
-                }).catch((error) => {
-                    alert(error.message);
-                    console.log(error);
-                });
+        // Function to display items from local storage
+        function displayItemsFromLocalStorage() {
+            const itemContainer = document.querySelector('.item-list');
+            itemContainer.innerHTML = ''; // Clear previous items
+
+            const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+
+            cartItems.forEach((item, index) => {
+                const itemElement = document.createElement('div');
+                itemElement.classList.add('item');
+                itemElement.innerHTML = `
+                    <img class="item-image" src="./img/ricado.jpg" alt="product" />
+                    <p>${item.name}</p>
+                    <p>ราคา ${item.price}</p>
+                `;
+                itemContainer.appendChild(itemElement);
             });
+        }
 
-        </script>
+        // Call the function to display items when the page loads
+        displayItemsFromLocalStorage();
+    </script>
 
-
-        <nav>
-            <a  href="home.html"><h1>Fresonlinesh</h1></a>
-            <div class="right-nav">
-                <input type="text" name="search" placeholder="ค้นหาสินค้า" class="input-search"/>
-                <a href="toDoList.html"><span class="pin"><ion-icon name="notifications"></ion-icon></span></a>
-                <a href="basket.html"><span class="basket"> <ion-icon name="basket"></ion-icon> </span></a>
-                <span class="profile-link"><ion-icon name="person"></ion-icon></span>
-                <button class="logout-button">Logout</button>
+    <nav>
+        <a href="home.html">
+            <h1>Fresonlinesh</h1>
+        </a>
+        <div class="right-nav">
+            <input type="text" name="search" placeholder="ค้นหาสินค้า" class="input-search" />
+            <a href="toDoList.html"><span class="pin"><ion-icon name="notifications"></ion-icon></span></a>
+            <a href="basket.html"><span class="basket"> <ion-icon name="basket"></ion-icon> </span></a>
+            <span class="profile-link"><ion-icon name="person"></ion-icon></span>
+            <button class="logout-button">Logout</button>
+        </div>
+    </nav>
+    <section class="main-section">
+        <div class="row">
+            <h2>สินค้าในตะกร้า</h2>
+            <div class="item-list">
             </div>
-        </nav>
-        <section class="main-section">
-            <div class="column">
-                <h2>สินค้าในตะกร้า</h2>
-                <div class="item-list">
-                    <a href="detail.html">
-                        <div class="item">
-                            <img src="./img/ricado.jpg" alt="product" />
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <a href="payment.html"><button class="buy-button">ซื้อสินค้า</button></a>
-        </section>
+        </div>
+        <a href="payment.html"><button class="buy-button">ซื้อสินค้า</button></a>
+    </section>
 
-        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-        <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    </body>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+
 </html>

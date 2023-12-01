@@ -104,10 +104,10 @@
                     </div>
                     <div class="product-detail">
                         <div class="detail-section">
-                            <p class="detail-text">ชื่อสินค้า</p>
+                            <p class="detail-text" id="productName">จอบ</p>
                         </div>
                         <div class="detail-section">
-                            <p class="detail-text">ราคา</p>
+                            <p class="detail-text" id="productPrice">500</p>
                         </div>
                         <div class="detail-section">
                             <label class="detail-text">จำนวน</label>
@@ -115,13 +115,8 @@
                                 type="number"
                                 style="width: 70px; margin-left: 1rem"
                                 class="detail-text"
+                                id="quantityInput"
                             />
-                        </div>
-                        <div class="detail-section">
-                            <a href="#" class="btn">เพิ่มไปยังตะกร้า</a>
-                        </div>
-                        <div class="detail-section">
-                            <a href="#" class="btn">ซื้อสินค้า</a>
                         </div>
                     </div>
                 </div>
@@ -133,6 +128,39 @@
                 </div>
             </div>
         </section>
+
+        <div class="detail-section">
+            <button id="addToCartBtn">เพิ่มไปยังตะกร้า</button>
+        </div>
+        <div class="detail-section">
+            <button>ซื้อสินค้า</button>
+        </div>
+        
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                document.getElementById('addToCartBtn').addEventListener('click', function () {
+                    const productName = document.getElementById('productName').innerText;
+                    const productPrice = document.getElementById('productPrice').innerText;
+                    const quantity = document.getElementById('quantityInput').value;
+        
+                    const product = {
+                        name: productName,
+                        price: productPrice,
+                        quantity: quantity
+                    };
+        
+                    const existingCart = JSON.parse(localStorage.getItem('cart')) || [];
+        
+                    existingCart.push(product);
+        
+                    localStorage.setItem('cart', JSON.stringify(existingCart));
+        
+                    alert('Product added to cart!');
+        
+                    window.location.href = 'basket.html';
+                });
+            });
+        </script>
 
         <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
         <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>

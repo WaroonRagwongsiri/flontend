@@ -21,25 +21,31 @@ h2 {
     font-size: 35px;
 }
 
-.column {
+.row {
     display: flex;
     flex-direction: column;
     gap: 1rem;
     width: 100%;
-    margin-left: 1rem;
 }
 
 .item-list {
     display: flex;
-    flex-direction: column;
+    overflow-x: auto;
     gap: 0.75rem;
     min-width: 100%;
-    align-items: flex-start;
 }
 
 .item {
     min-width: 400px;
-    height: 250px;
+    height: auto;
     background-color: #a3ad95;
 }
 
+.item-image {
+    display: block;
+    margin: 0 auto;
+}
+
+.item p {
+    text-align: left;
+}
