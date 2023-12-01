@@ -47,8 +47,38 @@
             });
         });
 
-    </script>
+        // Function to display items from local storage
+        var sumprice = 0;
+        function displayItemsFromLocalStorage() {
+            const itemContainer = document.querySelector('.item-list');
+            itemContainer.innerHTML = ''; // Clear previous items
 
+            const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+
+            cartItems.forEach((item, index) => {
+                const itemElement = document.createElement('div');
+                itemElement.classList.add('item');
+
+                const totalPrice = parseFloat(item.price) * parseInt(item.quantity);
+
+                itemElement.innerHTML = `
+                <p class="item-details">
+                    <span class="item-name">${item.name}</span>
+                    <span class="item-price">ราคา ${item.price} * จำนวน ${item.quantity} = ${totalPrice} บาท</span>
+                </p>
+        `;
+                itemContainer.appendChild(itemElement);
+                sumprice += totalPrice;
+            });
+            const sumpriceElement = document.createElement('div');
+            sumpriceElement.classList.add('sumprice');
+            sumpriceElement.textContent = `Total Price: ${sumprice} บาท`;
+            itemContainer.appendChild(sumpriceElement);
+        }
+
+        // Call the function to display items when the page loads
+        displayItemsFromLocalStorage();
+    </script>
 
     <nav>
         <a href="home.html">
@@ -62,35 +92,12 @@
             <button class="logout-button">Logout</button>
         </div>
     </nav>
-
-    <section class="container">
-        <div class="buttom">
-            <div class="buttom-left">
-                <div class="product">
-                    <div class="product-img">
-                        <img src="img/ricado.jpg" alt="ricado.jpg" />
-                    </div>
-                    <h2 class="product-name">ชื่อสินค้า</h2>
-                </div>
-                <div class="product-detail">
-                    <div class="detail-section">
-                        <p class="detail-text">ราคา</p>
-                    </div>
-                    <div class="detail-section">
-                        <label class="detail-text">จำนวน</label>
-                    </div>
-                    <div class="payment-section">
-                        <a href="#" class="btn">จ่ายเงิน</a>
-                    </div>
-                </div>
-            </div>
-            <div class="bottom-right">
-                <div class="textarea">
-                    <h3>รายละเอียด</h3>
-                    <textarea name="" id="" cols="50" rows="10"></textarea>
-                </div>
-            </div>
+    <section class="main-section">
+        <h1>สั่งซื้อ</h1>
+        <div class="row">
+            <div class="item-list"></div>
         </div>
+        <button class="payment-button">ชำระเงิน</button>
     </section>
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
