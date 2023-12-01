@@ -43,6 +43,11 @@
     object-fit: contain;
 }
 
+.product-name {
+    font-size: 30px;
+    text-align: center;
+}
+
 .product-detail {
     padding-top: 2rem;
     display: flex;
