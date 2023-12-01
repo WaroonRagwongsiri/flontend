@@ -8,18 +8,53 @@
         <link rel="stylesheet" href="css/nav.css" />
     </head>
     <body>
+        <script defer type="module">
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
+            import { getAuth, signOut , onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js";
+            import { getFirestore, collection, addDoc, query, where } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js";
+    
+            const firebaseConfig = {
+                apiKey: "AIzaSyDAN-T3Dy2aZcvwJCg35n75m3N36s58n0o",
+                authDomain: "tobeit67hackathon.firebaseapp.com",
+                projectId: "tobeit67hackathon",
+                storageBucket: "tobeit67hackathon.appspot.com",
+                messagingSenderId: "195365048954",
+                appId: "1:195365048954:web:0f4de9abdf5fd68af8e1c3"
+            };
+    
+            const app = initializeApp(firebaseConfig);
+            const auth = getAuth(app);
+            const db = getFirestore(app);
+    
+            const logoutButton = document.querySelector("button.logout-button");
+            
+            onAuthStateChanged(auth, (user) => {
+                if (!user) {
+                    console.log("user logged out");
+                    window.location.href = "index.html";
+                }
+            });
+
+            logoutButton.addEventListener("click", () => {
+                signOut(auth).then(() => {
+                    console.log("user logged out");
+                    window.location.href = "index.html";
+                }).catch((error) => {
+                    alert(error.message);
+                    console.log(error);
+                });
+            });
+
+        </script>
+
         <nav>
-            <h1>Fresonlinesh</h1>
+            <a  href="home.html"><h1>Fresonlinesh</h1></a>
             <div class="right-nav">
-                <input
-                    type="text"
-                    name="search"
-                    placeholder="ค้นหาสินค้า"
-                    class="input-search"
-                />
-                <p>PIN</p>
-                <p>BRACKET</p>
-                <p>PROFILE</p>
+                <input type="text" name="search" placeholder="ค้นหาสินค้า" class="input-search"/>
+                <span class="pin"><ion-icon name="notifications"></ion-icon></span>
+                <span class="basket"> <ion-icon name="basket"></ion-icon> </span>
+                <span class="profile-link"><ion-icon name="person"></ion-icon></span>
+                <button class="logout-button">Logout</button>
             </div>
         </nav>
         <section class="container">
@@ -98,5 +133,8 @@
                 </div>
             </div>
         </section>
+
+        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     </body>
 </html>

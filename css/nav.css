@@ -45,7 +45,7 @@ h1 {
     padding: 20px 15px;
     cursor: pointer;
     top: 7%;
-    right: 5%;
+    right: 3%;
 }
 
 .profile-link:hover + .logout-button,
