@@ -45,7 +45,7 @@ h1 {
     position: fixed;
     display: none;
     background-color: #fff;
-    color: black;
+    color: red;
     border: 1px solid #ddd;
     padding: 20px 15px;
     cursor: pointer;
