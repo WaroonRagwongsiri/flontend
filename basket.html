@@ -59,7 +59,7 @@
                 itemElement.classList.add('item');
                 itemElement.innerHTML = `
             <div class="item-details">
-                <img class="item-image" src="./img/ricado.jpg" alt="product" />
+                <img class="item-image" src="${item.image}" alt="product" />
                 <div class="item-info">
                     <p class="item-name">${item.name}</p>
                     <p class="item-price">ราคา ${item.price}</p>
@@ -105,8 +105,10 @@
             <div class="item-list">
             </div>
         </div>
-        <a href="payment.html"><button class="buy-button">ซื้อสินค้า</button></a>
-        <button class="clear-button">ล้างตะกร้า</button>
+        <div class="button-container">
+            <a href="payment.html" class="buy-button"><button>ซื้อสินค้า</button></a>
+            <button class="clear-button">ล้างตะกร้า</button>
+        </div>
     </section>
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>

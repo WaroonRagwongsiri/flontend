@@ -157,3 +157,24 @@
 textarea {
     border-radius: 15px;
 }
+
+button {
+    text-decoration: none;
+    background-color: #678345;
+    padding: 0.25rem 0.5rem;
+    color: white;
+    border-radius: 13px;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+.detail-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
