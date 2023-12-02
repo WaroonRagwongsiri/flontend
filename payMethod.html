@@ -46,38 +46,6 @@
                 console.log(error);
             });
         });
-
-        // Function to display items from local storage
-        var sumprice = 0;
-        function displayItemsFromLocalStorage() {
-            const itemContainer = document.querySelector('.item-list');
-            itemContainer.innerHTML = ''; // Clear previous items
-
-            const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
-
-            cartItems.forEach((item, index) => {
-                const itemElement = document.createElement('div');
-                itemElement.classList.add('item');
-
-                const totalPrice = parseFloat(item.price) * parseInt(item.quantity);
-
-                itemElement.innerHTML = `
-                <p class="item-details">
-                    <span class="item-name">${item.name}</span>
-                    <span class="item-price">ราคา ${item.price} * จำนวน ${item.quantity} = ${totalPrice} บาท</span>
-                </p>
-        `;
-                itemContainer.appendChild(itemElement);
-                sumprice += totalPrice;
-            });
-            const sumpriceElement = document.createElement('div');
-            sumpriceElement.classList.add('sumprice');
-            sumpriceElement.textContent = `รวมทั้งสิ้น: ${sumprice} บาท`;
-            itemContainer.appendChild(sumpriceElement);
-        }
-
-        // Call the function to display items when the page loads
-        displayItemsFromLocalStorage();
     </script>
 
     <nav>
@@ -93,11 +61,11 @@
         </div>
     </nav>
     <section class="main-section">
-        <h1>สั่งซื้อ</h1>
-        <div class="row">
-            <div class="item-list"></div>
-        </div>
-        <a href="payMethod.html"><button class="payment-button">ชำระเงิน</button></a>
+        <h1>ที่อยู่</h1>
+        <div class="address">
+            <div class="address-detail">
+                
+            </div>
     </section>
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
